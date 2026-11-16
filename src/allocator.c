@@ -98,7 +98,7 @@ void dump_map(void) {
     int i = 0;
     printf("--- Memory map ---\n");
     while (cur != NULL) {
-        printf("Block %d: addr=%p size=%zu %s\n", i, (void *)cur,
+        printf("Block %d: addr=%p size=%zu bytes %s\n", i, (void *)cur,
                cur->size, cur->free ? "FREE" : "USED");
         cur = cur->next;
         i++;
