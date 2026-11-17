@@ -57,6 +57,9 @@ void coalesce(void) {
 }
 
 void *my_malloc(size_t size) {
+    if (size == 0) {
+        return NULL;
+    }
     size = align8(size);
 
     struct block *found = find_free_block(size);
