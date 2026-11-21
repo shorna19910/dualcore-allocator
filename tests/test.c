@@ -20,6 +20,10 @@ int main() {
     allocator_reset();
     check(my_malloc(0) == NULL, "2. malloc(0) returns NULL");
 
+    allocator_reset();
+p = my_malloc(13);
+check(((size_t)p % 8) == 0, "3. address is 8-byte aligned");
+
     printf("\n%d passed, %d failed\n", passed, failed);
     return failed;
 }
