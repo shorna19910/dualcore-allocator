@@ -30,6 +30,17 @@ p = my_malloc(10);
 ((char *)p)[1] = 'i';
 check(((char *)p)[0] == 'H' && ((char *)p)[1] == 'i', "4. data written to a block can be read back");
 
+    allocator_reset();
+p = my_malloc(40);
+void *q = my_malloc(40);
+check((char *)q >= (char *)p + 40, "5. two blocks do not overlap");
+
+allocator_reset();
+p = my_malloc(64);
+my_free(p);
+q = my_malloc(64);
+check(p == q, "6. freed block is reused for the same size");
+
     printf("\n%d passed, %d failed\n", passed, failed);
     return failed;
 }
