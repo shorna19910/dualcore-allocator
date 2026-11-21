@@ -24,6 +24,12 @@ int main() {
 p = my_malloc(13);
 check(((size_t)p % 8) == 0, "3. address is 8-byte aligned");
 
+    allocator_reset();
+p = my_malloc(10);
+((char *)p)[0] = 'H';
+((char *)p)[1] = 'i';
+check(((char *)p)[0] == 'H' && ((char *)p)[1] == 'i', "4. data written to a block can be read back");
+
     printf("\n%d passed, %d failed\n", passed, failed);
     return failed;
 }
