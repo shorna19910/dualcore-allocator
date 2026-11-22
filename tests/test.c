@@ -41,6 +41,23 @@ my_free(p);
 q = my_malloc(64);
 check(p == q, "6. freed block is reused for the same size");
 
+    allocator_reset();
+p = my_malloc(200);
+my_malloc(8);
+my_free(p);
+q = my_malloc(50);
+void *r = my_malloc(50);
+check((char *)r == (char *)q + 80, "7. big free block is split");
+
+allocator_reset();
+p = my_malloc(50);
+q = my_malloc(50);
+my_malloc(8);
+my_free(p);
+my_free(q);
+r = my_malloc(100);
+check(r == p, "8. two adjacent free blocks are merged");
+
     printf("\n%d passed, %d failed\n", passed, failed);
     return failed;
 }
