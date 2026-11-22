@@ -58,6 +58,34 @@ my_free(q);
 r = my_malloc(100);
 check(r == p, "8. two adjacent free blocks are merged");
 
+    allocator_reset();
+set_strategy(BEST_FIT);
+void *a = my_malloc(500);
+my_malloc(8);
+void *b = my_malloc(300);
+my_malloc(8);
+void *c = my_malloc(600);
+my_malloc(8);
+my_free(a);
+my_free(b);
+my_free(c);
+r = my_malloc(212);
+check(r == b, "9. Best-Fit picks the smallest block that fits");
+
+allocator_reset();
+set_strategy(WORST_FIT);
+a = my_malloc(500);
+my_malloc(8);
+b = my_malloc(300);
+my_malloc(8);
+c = my_malloc(600);
+my_malloc(8);
+my_free(a);
+my_free(b);
+my_free(c);
+r = my_malloc(212);
+check(r == c, "10. Worst-Fit picks the largest block");
+
     printf("\n%d passed, %d failed\n", passed, failed);
     return failed;
 }
