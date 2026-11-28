@@ -27,8 +27,8 @@ gcc -Wall -Wextra tests/test.c -o test.out
 Expected result of the tests: `10 passed, 0 failed`.
 
 ## Team
-- Shorna Nandi
-- Mashura Khatun Mashu
+- Shorna Nandi (242-115-202), GitHub: shorna19910
+- Mashura Khatun Mashu (242-115-237), GitHub: mashura112
 
 ## Planned
 - Double-free and leak detection
